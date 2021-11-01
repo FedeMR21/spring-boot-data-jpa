@@ -16,7 +16,7 @@
             <form th:action="@{/registrar}" th:object="${usuario}" method="post">
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Usuario</label>
+                    <label class="col-sm-2 col-form-label" th:text="#{text.login.username}">Usuario</label>
                     <div class="col-sm-6">
                         <input type="text" th:field="*{username}" class="form-control"
                                th:errorclass="'form-control alert-danger'">
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Contraseña</label>
+                    <label class="col-sm-2 col-form-label" th:text="#{text.login.password}">Contraseña</label>
                     <div class="col-sm-6">
                         <input type="password" th:field="*{password}" class="form-control"
                                th:errorclass="'form-control alert-danger'">
@@ -37,7 +37,7 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input type="submit" class="btn btn-secondary" value="Registrarse">
+                        <input type="submit" class="btn btn-secondary" th:value="#{text.register.boton}">
                     </div>
                 </div>
 

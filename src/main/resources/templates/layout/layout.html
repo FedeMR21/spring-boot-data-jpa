@@ -10,7 +10,7 @@
 
 <header th:fragment="header">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Spring Boot</a>
+        <a class="navbar-brand" th:href="@{/}">Spring Boot</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -19,15 +19,21 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/form">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/form" th:text="#{text.menu.home}">Home <span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/listar}">Clientes</a>
+                    <a class="nav-link" th:href="@{/listar}" th:text="#{text.menu.customer}">Clientes</a>
                 </li>
             </ul>
             <ul class="navbar-nav navbar-right">
-                <li sec:authorize="!isAuthenticated()"><a class="btn btn-outline-primary" th:href="@{/login}">Sign
-                    In</a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:text="#{text.menu.signin}" class="btn btn-outline-primary"
+                                                          th:href="@{/login}">Iniciar Sesión</a></li>
+
+                <li sec:authorize="!isAuthenticated()"><a th:text="#{text.register.boton}"
+                                                          class="btn btn-outline-primary mx-2" th:href="@{/registrar}">Registrarse</a>
+                </li>
+
 
                 <li sec:authorize="isAuthenticated()" class="dropdown show">
                     <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -35,13 +41,28 @@
                         <span sec:authentication="name"></span>
                     </a>
 
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <form id="logoutForm" th:action="@{/logout}" method="post">
                             <button class="dropdown-item" onclick="document.getElementById('logoutForm').submit();"
-                                    type="submit">Sign Out
+                                    type="submit" th:text="#{text.menu.signout}">Sign Out
                             </button>
                         </form>
-                    </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav navbar-right mx-4">
+                <li class="nav-item mx-1"><a class="btn-outline-success" th:href="@{/locale(lang=es_ES)}">ES</a></li>
+                <li class="nav-item mx-1"><a class="btn-outline-success" th:href="@{/locale(lang=en_US)}">EN</a></li>
+
+                <li class="nav-item  dropdown show mx-2">
+                    <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownLang"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span th:text="#{text.locale.language}"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" th:href="@{/locale(lang=es_ES)}" th:text="#{text.locale.es}"></a>
+                        <a class="dropdown-item" th:href="@{/locale(lang=en_US)}" th:text="#{text.locale.en}"></a>
+                    </div>
                 </li>
             </ul>
         </div>

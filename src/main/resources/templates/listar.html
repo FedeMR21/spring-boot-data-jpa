@@ -18,13 +18,13 @@
                 <thead>
                 <tr>
                     <th sec:authorize="hasRole('ROLE_USER')">ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Fecha</th>
-                    <th sec:authorize="hasRole('ROLE_ADMIN')">Crear factura</th>
-                    <th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
-                    <th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+                    <th th:text="#{text.cliente.nombre}">Nombre</th>
+                    <th th:text="#{text.cliente.apellido}">Apellido</th>
+                    <th th:text="#{text.cliente.email}">Email</th>
+                    <th th:text="#{text.cliente.createAt}">Fecha</th>
+                    <th th:text="#{text.cliente.factura.crear}" sec:authorize="hasRole('ROLE_ADMIN')">Crear factura</th>
+                    <th th:text="#{text.cliente.editar}" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+                    <th th:text="#{text.cliente.eliminar}" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,13 +38,13 @@
                     <td th:text="${cliente.createAt}"></td>
                     <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-success btn-xs"
                                                                  th:href="@{'/factura/form/' + ${cliente.id}}"
-                                                                 th:text="'Crear factura'"></a></td>
+                                                                 th:text="#{text.cliente.factura.crear}"></a></td>
                     <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-primary btn-xs"
                                                                  th:href="@{/form/} + ${cliente.id}"
-                                                                 th:text="Editar"></a></td>
+                                                                 th:text="#{text.cliente.editar}"></a></td>
                     <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger btn-xs"
                                                                  th:href="@{/eliminar/} + ${cliente.id}"
-                                                                 th:text="Eliminar"
+                                                                 th:text="#{text.cliente.eliminar}"
                                                                  onclick="return confirm('Estás seguro que quieres eliminar?')"></a>
                     </td>
                 </tr>
