@@ -34,6 +34,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -85,6 +86,11 @@ public class ClienteController {
         model.put("titulo", messageSource.getMessage("text.cliente.detalle.titulo", null, locale).concat(": ").concat(cliente.getNombre()));
 
         return "ver";
+    }
+
+    @GetMapping(value = "/listar-rest")
+    public @ResponseBody List<Cliente> listarRest() {
+        return clienteService.findAll();
     }
 
     @RequestMapping(value = {"/listar", "/"}, method = RequestMethod.GET)
@@ -244,7 +250,6 @@ public class ClienteController {
                 return true;
             }
         }
-
         return false;*/
     }
 }

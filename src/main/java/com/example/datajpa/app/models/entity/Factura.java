@@ -1,9 +1,11 @@
 package com.example.datajpa.app.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +30,7 @@ public class Factura implements Serializable {
     private Date createAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private Cliente cliente;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -56,6 +59,11 @@ public class Factura implements Serializable {
             total += items.get(i).calcularImporte();
         }
         return total;
+    }
+
+    @XmlTransient
+    public Cliente getCliente() {
+        return cliente;
     }
 
     private static final long serialVersionUID = 1L;

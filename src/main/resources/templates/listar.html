@@ -13,6 +13,12 @@
             <h4 class="card-title">
                 <p><a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary btn-xs" th:href="@{/form}">Crear
                     Cliente</a></p>
+                <a class="btn btn-success btn-xs" th:href="@{'/listar'(format=csv)}"
+                   target="_blank">CSV</a>
+                <a class="btn btn-outline-success btn-xs" th:href="@{'/listar'(format=xml)}"
+                   target="_blank">XML</a>
+                <a class="btn btn-warning btn-xs" th:href="@{'/listar'(format=json)}"
+                   target="_blank">JSON</a>
             </h4>
             <table class="table table-striped">
                 <thead>
